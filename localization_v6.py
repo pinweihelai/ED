@@ -4,15 +4,15 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 import re
 from pinyin_test import get_pinyin
-stop_words = [u'我问你', u'我说', u'你告诉我', u'告诉我', u'我知道了', u'我知道',u'你那边',u'在那边', u'那边的', u'那边', u'我是说',
-              u'我是问', u'我就问你', u'我就是问你', u'你这个',u'这个', u'你是', u'好的']
-
+stop_words = [u'我先问一下你', u'问一下', u'你听我说', u'我想问你', u'我问你', u'我说', u'你告诉我', u'告诉我', u'我知道了',
+              u'我知道的',u'知道的',u'知道了',u'你那边',u'在那边', u'那边的', u'那边', u'我是说',
+              u'我是问', u'我就问你', u'我就是问你', u'你这个',u'这个', u'就这样', u'好吧']
 def process(asr_result):
     '''去除标点符号、停用词'''
     #asr_result = unicode(asr_result, 'utf-8')
     asr_result = re.sub(u'[，。：；！/、]', '', asr_result)
     asr_result = fiter_stops(asr_result)
-    asr_result = re.sub(u'[啊哦的咯]', '', asr_result)  # 去停用词
+    asr_result = re.sub(u'[嗯恩啊哦咯呢]', '', asr_result)  # 去停用词
     asr_result = re.sub(u'loft', u'lao fu te', asr_result)
     return asr_result
 
